@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-@Document(collection = "args")
+@Document(collection = "arg")
 public class Argument  {
     @MongoId
     private ObjectId id;
@@ -82,13 +82,7 @@ public class Argument  {
         this.attack = attack;
     }
 
-    /*public String getAttacked_by() {
-        return attacked_by;
-    }
 
-    public void setAttacked_by(String attacked_by) {
-        this.attacked_by = attacked_by;
-    }*/
 
     public String[] getAttacked_by() {
         return attacked_by;

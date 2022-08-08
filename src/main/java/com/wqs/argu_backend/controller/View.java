@@ -26,7 +26,7 @@ public class View {
     @Autowired
     private ArgumentService argDao;
 
-    @RequestMapping( "/displayFramework")
+    @RequestMapping( "/displayFramework")// Argument Display  page
     @ResponseBody
     public Object displayArgument(@RequestBody String current_fid,Model model){
         System.out.println(current_fid);
@@ -47,7 +47,7 @@ public class View {
         return argLists;
     }
 
-    @RequestMapping( "/searchFid")
+    @RequestMapping( "/searchFid") //Search an argument framework by id, search.html
     public String Search(String search_fid,HttpServletRequest request, Model model){
         int s_fid = Integer.parseInt(search_fid);
 
@@ -55,14 +55,14 @@ public class View {
         if(title!=null){
             model.addAttribute("Fid", search_fid);
             model.addAttribute("Ftitle", title.getTitle());
-            return "select";
+            return "select"; //select.html
         }else{
-            return "view";
+            return "view"; //view.html
         }
 
     }
 
-    @RequestMapping( "/All")
+    @RequestMapping( "/All") // Framework List page
     @ResponseBody
     public Object displayFramework(){
         List<Argument> allFrame = argDao.findAllFramework();
@@ -81,6 +81,8 @@ public class View {
     }
 
     @RequestMapping( "/viewone")
+    //Click on one of the argument framework title on the
+    // Framework List page(view.html) to go to the Argument Display page(select.html)
     public String ViewOne(String selectedFid,HttpServletRequest request, Model model){
 
         int s_fid = Integer.parseInt(selectedFid);
@@ -95,7 +97,7 @@ public class View {
         return "select";
     }
 
-    @RequestMapping( "/searchTitle")
+    @RequestMapping( "/searchTitle")//Search argument frameworks by title view.html
     @ResponseBody
     public Object SearchTitle(@RequestBody String searchTitle){
         List<Argument> allFrame = argDao.findAllFramework();
@@ -136,6 +138,7 @@ public class View {
     }
 
     @RequestMapping( "/addvote")
+    //Add 1 to the number of user votes for an argument, Argument Display page(select.html)
     @ResponseBody
     public String Vote(@RequestBody AttackInfo attack, Model model){
         System.out.println(attack.getCurrentFid()+"  "+attack.getAttacked_afid()+" "+attack.getType());
@@ -155,7 +158,7 @@ public class View {
         }
     }
 
-    @RequestMapping( "/vote")
+    @RequestMapping( "/vote") //Voting functionality, Display Argument page(select.html)
     @ResponseBody
     public Object displayVote(@RequestBody String currFid){
         System.out.println("Vote currFid:"+currFid);
@@ -224,7 +227,8 @@ public class View {
         return voteLists;
     }
 
-    public int findArray(String[] array,String e){ //public static int
+    //Determine if two arrays are equal
+    public int findArray(String[] array,String e){
         for(int i = 0;i<array.length;i++){
             if(array[i].equals(e)){
                 //System.out.println("i: "+array[i]+" "+e);
@@ -233,7 +237,9 @@ public class View {
         }
         return -1;
     }
-    public void Grounded(int size, List<Argument> argList, Boolean flag){ //public static int
+
+    //    Calling the labeling algorithm for grounded semantics(G_Labelling())
+    public void Grounded(int size, List<Argument> argList, Boolean flag){
         String[]argu = new String[size];
         String[][] label = new String[size][3];
         for(int i=0;i<size;i++) {
@@ -265,14 +271,5 @@ public class View {
             }
             System.out.println(" afid:" + argument.getAfid() + " label:" + argument.getLabel());
         }
-        /*if(flag){
-            int up = argDao.updateListLabel(argList);
-            if(up<0){
-                System.out.println("fail");
-            } else{
-                System.out.println("fail");
-            }
-        }*/
-
     }
 }

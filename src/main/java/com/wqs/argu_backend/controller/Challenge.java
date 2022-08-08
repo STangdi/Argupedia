@@ -169,14 +169,14 @@ public class Challenge {
 
 
 
-    @RequestMapping( "/premise")
+    /*@RequestMapping( "/premise")
     public String attackPremise(Schema ac_s){
         return "";
     }
     @RequestMapping( "/conclusion")
     public String attackConclusion(Schema ac_s){
         return "";
-    }
+    }*/
 
     public int initialAttack(Argument attArg, ChallengeInfo cinfo){
        int cfid = Integer.parseInt(cinfo.getC_fid());
