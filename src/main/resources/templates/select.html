@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="@{/}">
+    <meta charset="UTF-8">
+    <title>View and Select Argument</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="../static/css/select.css" th:href="@{/css/select.css}">
+    <!--Download link for jquery library:  https://code.jquery.com/jquery-3.6.0.js-->
+    <script type="text/javascript" src="../static/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-default shadow-lg" role="navigation">
+    <div id="top" class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Argupedia
+            </a>
+        </div>
+        <div class="top_nav">
+            <ul class="nav navbar-nav">
+                <li ><a  href="home">Home</a></li>
+                <li class="top_nav_menu">
+                    <a href="#" ><i class="bi bi-tornado"></i> Argument</a>
+                    <div class="top_nav_item">
+                        <ul class="nav navbar-nav ">
+                            <li ><a href="find">Find</a></li>
+                            <li ><a href="createNewFrame">Create New Framework</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="view"><i class="bi bi-list-columns-reverse"></i></i> Framework</a></li>
+                <li><a class="select_nav" href="view"><i class="bi bi-share-fill"></i> View</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div >
+        <div id="all_argu_display" >
+            <input type="hidden"  id="Fid" th:value="${Fid}" />
+            <h4>Framework <span th:text="${Fid}"></span>: <span th:text="${Ftitle}" id="ftitle"></span></h4>
+            <svg id="normal" class="svg_active"></svg>
+            <svg id="votesvg"></svg>
+        </div>
+        <div id="all_argu_display2" >
+            <svg id="votesvg"></svg>
+        </div>
+        <div id="argu_option" >
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="tips_title">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#one_argu_detail" aria-expanded="true" aria-controls="collapseThree">
+                                Tips
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="one_argu_detail" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="Tips">
+                        <p>This framework uses grounded labelling algorithm to evaluate arguments. <strong>IN</strong> means the argument is acceptable or winning, <strong>OUT</strong> means the argument should not be accepted, it is defeated. <strong>UNDEC</strong> means the current status of the argument is somewhere between winning and losing, which we cannot determine.</p>
+                        <div><span class="color_text">IN:</span> <span id="color_in"></span> <span class="color_text">OUT:</span><span id="color_out"></span><span class="color_text">UNDEC:</span> <span id="color_undec"></span></div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#one_argu_vote" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class='bi bi-hand-thumbs-up-fill'></i> Vote
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="one_argu_vote" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Vote">
+                        <p>By clicking on the button below you can see how the vote affects the evaluation of the argument labeled UNDEC.</p>
+                        <div>
+                            <button id="votestart" type="button" class="question_btn btn btn-primary center-block">Start</button>
+                        </div>
+                        <div>
+                            <button id="votestop" type="button" class="question_btn btn btn-primary center-block">Stop</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#one_argu_critical_question" aria-expanded="false" aria-controls="collapseOne">
+                                <i class='bi bi-chat-text-fill'></i> Select Critical Question
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="one_argu_critical_question" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div id="a_cq_input" class="c_question c_question_active">
+                            <form th:action="@{/challengeArgu/type}" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h3>Select Critical Question</h3>
+                                        <input class="chall_fid" name="currentFid" type="hidden"  value=""/>
+                                        <input class="chall_afid" name="attacked_afid" type="hidden"  value=""/>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="a_cq_r" value="premise" checked>
+                                                Are the believed circumstances(<strong><em>R</em></strong>) true? (Disagree with <strong><em>R</em></strong>)
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="a_cq_action" value="attack" checked>
+                                                Are there alternative ways(<strong><em>A</em></strong>) of realising the same consequences? (Disagree with <strong><em>A</em></strong>)
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="a_cq_s" value="premise" checked>
+                                                Assuming the circumstances(<strong><em>R</em></strong>), does the action(<strong><em>A</em></strong>) have the stated consequences(<strong><em>S</em></strong>)? (Disagree with <strong><em>S</em></strong>)
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="a_cq_goal" value="premise" checked>
+                                                Assuming that the execution of action(<strong><em>A</em></strong>) in circumstances(<strong><em>R</em></strong>) leads to new circumstances(<strong><em>S</em></strong>), will this truly achieve the desired goal(<strong><em>G</em></strong>)? (Disagree with <strong><em>G</em></strong>)
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="a_cq_value" value="premise" checked>
+                                                Is the value(<strong><em>V</em></strong>) indeed a legitimate value? (Disagree with <strong><em>V</em></strong>)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button id="action_question" type="submit" class="question_btn btn btn-primary center-block">Submit</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="ex_cq_input" class="c_question">
+                            <form th:action="@{/challengeArgu/type}" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input class="chall_fid" name="currentFid" type="hidden"  value=""/>
+                                        <input class="chall_afid" name="attacked_afid" type="hidden"  value=""/>
+                                        <h3>Select Critical Question</h3>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="ex_cq_eq" value="premise" checked>
+                                                1. Expertise Question: How credible is <strong><em>E</em></strong> as an expert source?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="ex_cq_fq" value="premise" checked>
+                                                2. Field Question: Is <strong><em>E</em></strong> an expert in the field that <strong><em>A</em></strong> is in?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="ex_cq_oq" value="premise" checked>
+                                                3. Opinion Question: What did <strong><em>E</em></strong> assert that implies <strong><em>A</em></strong>?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="ex_cq_tq" value="premise" checked>
+                                                4. Trustworthiness Question: Is <strong><em>E</em></strong> personally reliable as a source?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="ex_cq_cq" value="attack" checked>
+                                                5. Consistency Question: Is <strong><em>A</em></strong> consistent with what other experts assert?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="ex_cq_beq" value="premise" checked>
+                                                6. Backup Evidence Question: Is <strong><em>E</em></strong>’s assertion based on evidence?
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button id="expert_question" type="submit" class="question_btn btn btn-primary center-block">Submit</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="posi_cq_input" class="c_question ">
+                            <form th:action="@{/challengeArgu/type}" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h3>Select Critical Question</h3>
+                                        <input class="chall_fid" name="currentFid" type="hidden"  value=""/>
+                                        <input class="chall_afid" name="attacked_afid" type="hidden"  value=""/>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" value="premise" checked />
+                                                1. Is <strong><em>a</em></strong> in a position to know whether <strong><em>A</em></strong> is true (false)?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="premise" />
+                                                2. Is <strong><em>a</em></strong> an honest (trustworthy, reliable) source?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="attack" />
+                                                3. Did <strong><em>a</em></strong> assert that <strong><em>A</em></strong> is true (false)?
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button id="position_question" type="submit" class="btn btn-primary center-block">Submit</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="pop_cq_input" class="c_question">
+                            <form th:action="@{/challengeArgu/type}" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h3>Select Critical Question</h3>
+                                        <input class="chall_fid" name="currentFid" type="hidden"  value=""/>
+                                        <input class="chall_afid" name="attacked_afid" type="hidden"  value=""/>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" value="premise" checked />
+                                                1. What evidence, such as a poll or an appeal to common knowledge, supports the claim that <strong><em>A</em></strong> is generally accepted as true?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="attack" />
+                                                2. Even if <strong><em>A</em></strong> is generally accepted as true, are there any good reasons for doubting it is true?
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button id="popular_question" type="submit" class="question_btn btn btn-primary center-block">Submit</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="ana_cq_input" class="c_question">
+                            <form th:action="@{/challengeArgu/type}" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h3>Select Critical Question</h3>
+                                        <input class="chall_fid" name="currentFid" type="hidden"  value=""/>
+                                        <input class="chall_afid" name="attacked_afid" type="hidden"  value=""/>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" value="premise" checked />
+                                                1. Are there differences between <strong><em>C1</em></strong> and <strong><em>C2</em></strong> that would tend to undermine the force of the similarity cited?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="premise" />
+                                                2. Is <strong><em>A</em></strong> true (false) in <strong><em>C1</em></strong>?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="attack" />
+                                                3. Is there some other case <strong><em>C3</em></strong> that is also similar to <strong><em>C1</em></strong>, but in which <strong><em>A</em></strong> is false (true)?
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button id="analogy_question" type="submit" class="question_btn btn btn-primary center-block">Submit</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="corr_cq_input" class="c_question">
+                            <form th:action="@{/challengeArgu/type}" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h3>Select Critical Question</h3>
+                                        <input class="chall_fid" name="currentFid" type="hidden"  value=""/>
+                                        <input class="chall_afid" name="attacked_afid" type="hidden"  value=""/>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" value="premise" checked />
+                                                1. Is there really a correlation between <strong><em>A</em></strong> and <strong><em>B</em></strong>?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="premise" />
+                                                2. Is there any reason to think that the correlation is any more than a coincidence?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="attack" />
+                                                3. Could there be some third factor, <strong><em>C</em></strong>, that is causing both <strong><em>A</em></strong> and <strong><em>B</em></strong>?
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button id="correlation_question" type="submit" class="question_btn btn btn-primary center-block">Submit</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal box code from: https://getbootstrap.com/docs/3.4/javascript/#modals -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Vote</h4>
+            </div>
+            <div class="modal-body">
+                Your vote is important and cannot be changed once it is submitted. If you are sure you favor this argument, please click the <strong>Confirm</strong> button to submit your vote. Otherwise, you can cancel this vote by clicking the <strong>Cancel</strong> button.
+                Any choice you make is appreciated.
+            </div>
+            <div class="modal-footer">
+                <button id="cancleV" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="confirmV" type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="saveV" type="hidden" value=""/>
+
+</body>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<!--Download link for darge-d3: https://github.com/dagrejs/dagre-d3/wiki
+  https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.js
+  https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.min.js
+-->
+<script src="../static/js/dagre.js" th:src="@{/js/dagre.js}"></script>
+<script src="../static/js/dagre-d3.min.js" th:src="@{/js/dagre-d3.min.js}"></script>
+<script src="../static/js/select.js" th:src="@{/js/select.js}"></script>
+</html>

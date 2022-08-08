@@ -1,0 +1,234 @@
+body{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.container{
+    width: 100%;
+    /* margin-left: 10px;*/
+    padding: 0;
+}
+.container .row{
+    margin: 0;
+}
+#all_argu_display{
+    width: 100%;
+    height: 1500px;
+    padding-left: 10px;
+    /*height: 520px;
+    background-color: white;*/
+    margin-right: 20px;
+
+
+}
+#argu_option{
+    width: 38%;
+    position: absolute;
+    top: 50px;
+    right:25px;
+    padding: 12px;
+    border-radius: 20px;
+    /*background-color: white;*/
+}
+#argu_option .divider{
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+#one_argu_vote p{
+    font-size: 16px;
+}
+#one_argu_vote div{
+    display: inline-block;
+    margin-left: 70px;
+    margin-bottom: 10px;
+}
+#one_argu_vote div button{
+    font-size: 16px;
+    border:1px solid #FF9B4F;
+    background-color: #FF9B4F;
+}
+#one_argu_vote div button:hover{
+    color: #FF9B4F;
+    background-color: white;
+}
+.panel-default>.panel-heading {
+    color: #F8F4F1;
+    background-color: #FF9B4F;
+}
+.panel-collapse{
+    padding-left: 6px;
+}
+#one_argu_critical_question{
+    position: fixed;
+    width: 36%;
+    top: 210px;
+    right:37px;
+    padding: 12px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+#one_argu_detail{
+    height: 170px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+#one_argu_detail p{
+    font-size: 16px;
+}
+#one_argu_detail div{
+    width: 280px;
+    height: 25px;
+    margin-left: 70px;
+}
+#one_argu_detail div span{
+    display: inline-block;
+
+    width:25px;
+    height: 25px;
+}
+#one_argu_detail div .color_text{
+    padding-right: 5px;
+    text-align: right;
+}
+#one_argu_detail div #color_in{
+    margin-right: 20px;
+    background-color: #28a745;
+    cursor: pointer;
+}
+#one_argu_detail div #color_out{
+    background-color: #dc3545;
+    margin-left:10px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+#one_argu_detail div #color_undec{
+    margin-left:25px;
+    background-color: rgba(0,0,0,.125);
+    cursor: pointer;
+}
+
+.c_question{
+    display:none;
+}
+.c_question_active{
+    display: block;
+}
+.c_question form fieldset .form-group{
+    margin-top: -15px;
+}
+.c_question form fieldset .form-group h3{
+    text-align: center;
+}
+.c_question form fieldset .form-group .radio label{
+    font-size: 16px;
+}
+
+.c_question form fieldset button{
+    margin-top: 20px;
+    height: 40px;
+    color: #F8F4F1;
+    font-size: 16px;
+    background-color: #FF9B4F;
+    border: 1px solid #FF9B4F;
+}
+.c_question form fieldset button:hover{
+    color:#FF9B4F;
+    background-color: white;
+    border: 1px solid #FF9B4F;
+}
+
+svg{
+    width:100%;
+    height: 100%;
+    display: none;
+    /*width:740px;
+    height: 1500px;*/
+    overflow: visible;
+    background-color: #F8F4F1;
+}
+.svg_active{
+    display: block;
+}
+#all_argu_display #votesvg g{
+
+}
+#all_argu_display svg g g .nodes g rect{
+
+}
+
+#all_argu_display svg g >.label{
+
+}
+.one_argument{
+    width:240px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    color: #212529;
+    background-color: #f8f9fa;/*#28a745  hui#6c757d*/
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+
+}
+.argument_card_header{
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.one_argument_selected{
+    color: #fff;
+    background-color: #FF9B4F;
+}
+.one_argument .one_argument_content{
+    padding-left: 5px;
+    padding-right: 5px;
+    word-wrap: break-word;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: left;
+    line-height: 24px;
+    white-space: normal;
+}
+
+.one_argument_challenge{
+    margin: 5px auto;
+    padding-top: 5px;
+    /*width:100px;*/
+    height: 30px;
+    border-radius: 25px;
+    background-color: #fff;
+    border:1px solid rgba(0,0,0,.125);
+}
+.one_argument .one_argument_challenge button{
+    margin: auto 10px;
+    color: #FF9B4F;
+    font-size: 15px;
+    background-color: #F8F4F1;
+    border: 1px solid #FF9B4F;
+    border-radius: 20px;
+}
+.one_argument .one_argument_challenge button:hover{
+    color:#F8F4F1;
+    background-color: #FF9B4F;
+    border: 1px solid #FF9B4F;
+}
+
+.one_argument .one_argument_challenge button span{
+    margin-left: 5px;
+}
+
+#myModal div .modal-content .modal-body{
+    padding: 20px;
+    font-size: 16px;
+}

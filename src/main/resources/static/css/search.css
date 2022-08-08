@@ -1,0 +1,89 @@
+#search {
+    margin-top: 15%;
+    height: 360px;
+
+}
+@keyframes turnZ{
+    0%{transform:rotateZ(0deg);}
+    100%{transform:rotateZ(360deg);}
+}
+
+#img3{
+    position: absolute;
+    top:115px;
+    left: 126px;
+
+}
+#img3:hover{
+    cursor: pointer;
+    animation-name:turnZ;
+    animation-duration:5s;
+    animation-iteration-count:1;
+}
+@keyframes turnX{
+    0%{transform:translateX(0px);}
+    50%{transform:translateX(100px);}
+    100%{transform:translateX(0px);}
+}
+
+#img4{
+    position: absolute;
+    top:85px;
+    left: 400px;
+    width:330px;
+    height: 126px;
+}
+#img4:hover{
+    cursor: pointer;
+    animation-name:turnX;
+    animation-duration:1.5s;
+    animation-iteration-count:1;
+}
+#searchform{
+    width:540px;
+    height:40px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.form-group .search{
+    width:450px;
+    height:40px;
+}
+#searchform button{
+    height:40px;
+    color: #fff;
+    background-color: #FF9B4F;
+    border: 1px solid #ccc;
+}
+#searchform button:hover{
+    background-color: #fff;
+    color: #FF9B4F;
+    border: 1px solid #FF9B4F;
+}
+#image{
+    margin-top: 60px;
+    margin-left: 770px;
+    width:350px;
+    height: 230px;
+}
+@keyframes turn1{
+    0%{transform:translateY(0px);}
+    25%{transform:translateX(30px) translateY(-60px);}
+    50%{transform:translateY(0px);}
+    60%{transform:translateX(20px) translateY(-30px);}
+    70%{transform:translateY(0px);}
+    80%{transform:translateX(10px) translateY(-20px);}
+    100%{transform:translateY(0px);}
+}
+#image #img1:hover{
+    animation-name:turn1;
+    animation-duration:2s;
+    animation-iteration-count:1;
+}
+#image #img2{
+    width: 129px;
+    height: 110px;
+    margin-left: -60px;
+    margin-top: -20px;
+}

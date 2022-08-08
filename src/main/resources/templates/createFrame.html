@@ -1,0 +1,503 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="@{/}">
+    <meta charset="UTF-8">
+    <title>Create New Argument</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="../static/css/new_arg.css" th:href="@{/css/new_arg.css}">
+    <!--Download link for jquery library:  https://code.jquery.com/jquery-3.6.0.js-->
+    <script type="text/javascript" src="../static/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-default shadow-lg" role="navigation">
+    <div id="top" class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Argupedia
+            </a>
+        </div>
+        <div class="top_nav">
+            <ul class="nav navbar-nav">
+                <li ><a  href="home"><i class="bi bi-house"></i> Home</a></li>
+                <li class="top_nav_menu">
+                    <a class="select_nav" href="#" ><i class="bi bi-tornado"></i> Argument</a>
+                    <div class="top_nav_item">
+                        <ul class="nav navbar-nav ">
+                            <li ><a href="find">Find</a></li>
+                            <li ><a href="createNewFrame">Create New Framework</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="view"><i class="bi bi-list-columns-reverse"></i></i> Framework</a></li>
+                <li><a href="view"><i class="bi bi-share-fill"></i> View</a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div id="select_scheme" class="col-xs-6 col-md-6">
+            <h4>Create the first argument for the topic you want to discuss!</h4>
+            <div id="select_scheme_dropdown" class="dropdown">
+                <button id="dropdown_button" class="btn btn-default" type="button" >
+                    Action Scheme
+                </button>
+                <ul id="dropdown_item" class="dropdown-menu" >
+                    <li class="dropdown_item_li">Action Scheme</li>
+                    <li class="dropdown_item_li">Expert Opinion Scheme</li>
+                    <li class="dropdown_item_li">Popular Opinion Scheme</li>
+                    <li class="dropdown_item_li">Position to Know Scheme</li>
+                    <li class="dropdown_item_li">Analogy Scheme</li>
+                    <li class="dropdown_item_li">Correlation to Cause Scheme</li>
+                </ul>
+            </div>
+
+            <div id="a_scheme_input" class="s_scheme s_scheme_active">
+                <form method="post" th:action="@{/argument/action}" action="#">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="a_title">Title:</label>
+                            <input type="text" id="a_title" name="title" class="form-control" placeholder="Create a title for your topic" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_r">R: Current Circumstances</label>
+                            <input type="text" id="a_r" name="currentR" class="form-control" placeholder="In the current circumstances" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_action">A: Action</label>
+                            <input type="text" id="a_action" name="action" class="form-control" placeholder="We should perform action A" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_s">S: New Circumstance</label>
+                            <input type="text" id="a_s" name="new_s" class="form-control" placeholder="Which will result in new circumstances S" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">G: Goal</label>
+                            <input type="text" id="a_goal" name="goal" class="form-control" placeholder="Which will realise goal G" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_value">V: Value</label>
+                            <input type="text" id="a_value" name="value" class="form-control" placeholder="Which will promote value V" required />
+                        </div>
+                        <button id="a_schema_button" type="submit" class=" btn btn-primary center-block">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="ex_scheme_input" class="s_scheme ">
+                <form method="post" th:action="@{/argument/expert}" >
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="ex_title">Title: </label>
+                            <input type="text" id="ex_title" name="title" class="form-control" placeholder="Create a title for your topic" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">Major Premise: </label>
+                            <input type="text" id="ex_majp" name="majorPremise" class="form-control" placeholder="Source E is an expert in subject domain D containing proposition A" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">Minor Premise: </label>
+                            <input type="text" id="ex_minp" name="minorPremise" class="form-control" placeholder="E asserts that proposition A (in domain D) is true (false)" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_value">Conclusion:</label>
+                            <input type="text" id="ex_conclusion" name="conclusion" class="form-control" placeholder="A may plausibly be taken to be true (false)" required />
+                        </div>
+                        <button id="ex_schema_button" type="submit" class=" btn btn-primary center-block">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="pop_scheme_input" class="s_scheme ">
+                <form method="post" th:action="@{/argument/popular}" >
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="pop_title">Title: </label>
+                            <input type="text" id="pop_title" name="title" class="form-control" placeholder="Create a title for your topic" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">Generally Acceptance Premise: </label>
+                            <input type="text" id="pop_gaccP" name="gaccPremise" class="form-control" placeholder="A is generally accepted as true." required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">Presumption Premise: </label>
+                            <input type="text" id="pop_presuP" name="presuPremise" class="form-control" placeholder="If A is generally accepted as true, that gives a reason in favor of A." value="If A is generally accepted as true, that gives a reason in favor of A." readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="a_value">Conclusion: </label>
+                            <input type="text" id="pop_conclusion" name="conclusion" class="form-control" placeholder="There is a reason in favor of A." required />
+                        </div>
+                        <button id="pop_schema_button" type="submit" class=" btn btn-primary center-block">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="posi_scheme_input" class="s_scheme ">
+                <form method="post" th:action="@{/argument/position}" >
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="posi_title">Title: </label>
+                            <input type="text" id="posi_title" name="title" class="form-control" placeholder="Create a title for your topic" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">Major Premise: </label>
+                            <input type="text" id="posi_majp" name="majorPremise" class="form-control" placeholder="Source a is in a position to know about things in a certain subject domain S containing proposition A." required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">Minor Premise: </label>
+                            <input type="text" id="posi_minp" name="minorPremise" class="form-control" placeholder="a asserts that A is true (false)" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_value">Conclusion: </label>
+                            <input type="text" id="posi_conclusion" name="conclusion" class="form-control" placeholder="A is true (false)" required />
+                        </div>
+                        <button id="posi_schema_button" type="submit" class=" btn btn-primary center-block">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="ana_scheme_input" class="s_scheme ">
+                <form method="post" th:action="@{/argument/analogy}" >
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="ana_title">Title: </label>
+                            <input type="text" id="ana_title" name="title" class="form-control" placeholder="Create a title for your topic" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">Similarity Premise: </label>
+                            <input type="text" id="ana_similarP" name="similarPremise" class="form-control" placeholder="Generally, case C1 is similar to case C2." required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">Base Premise: </label>
+                            <input type="text" id="ana_baseP" name="basePremise" class="form-control" placeholder="A is true (false) in case C1." required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_value">Conclusion: </label>
+                            <input type="text" id="ana_conclusion" name="conclusion" class="form-control" placeholder="A is true (false) in case C2." required />
+                        </div>
+                        <button id="ana_schema_button" type="submit" class=" btn btn-primary center-block">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="corr_scheme_input" class="s_scheme ">
+                <form method="post" th:action="@{/argument/correlation}" >
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="corr_title">Title: </label>
+                            <input type="text" id="corr_title" name="title" class="form-control" placeholder="Create a title for your topic" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_goal">Correlation Premise: </label>
+                            <input type="text" id="corr_corrP" name="corrPremise" class="form-control" placeholder="There is a positive correlation between A and B." required />
+                        </div>
+                        <div class="form-group">
+                            <label for="a_value">Conclusion: </label>
+                            <input type="text" id="corr_conclusion" name="conclusion" class="form-control" placeholder="A causes B." required />
+                        </div>
+                        <button id="corr_schema_button" type="submit" class=" btn btn-primary center-block">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+        <div class="col-xs-5 col-md-5 col-md-offset-1 col-xs-offset-1">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="tips_title">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#tips" aria-expanded="true" aria-controls="collapseThree">
+                                Tips
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="tips" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="tips">
+                        <div class="panel-body">
+                            Hi, here are some tips on arguments and critical issues.<br>
+                            The argument scheme can help you create an argument quickly and efficiently. If you are not familiar with this, you can click on the "<strong>Example of Argument Scheme</strong>" below to learn how to create an argument using the template.
+                            Similarly, you can click on the "<strong>Example of Critical Question</strong>" below to see from which perspectives other users will challenge your argument.<br>
+                            You can select the argument option you are interested in by clicking on the button in the top left hand corner of the page. Once you have selected your argument option, the example of argument scheme and critical questions on the right will change.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Example of Argument Scheme
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div id="action_ex_scheme_input" class="panel-body s_example s_example_active">
+                            <h4>Action Scheme</h4>
+                            <p class=" text-justify">In the current circumstances R:</p>
+                            <pre> COVID-19 is spreading rapidly.    </pre>
+                            <p class="text-justify">We should perform action A:</p>
+                            <pre> Full lockdown.           </pre>
+                            <p class="text-justify"> Which will result in new circumstances S:</p>
+                            <pre> The number of confirmed cases is falling.</pre>
+                            <p class="text-justify">Which will realise goal G:</p>
+                            <pre> Stop the spread of COVID-19.</pre>
+                            <p>Which will promote value V:</p>
+                            <pre> Public health.         </pre>
+                        </div>
+                        <div id="expert_ex_scheme_input" class="panel-body s_example">
+                            <h4>Expert Opinion Scheme</h4>
+                            <p> E is an expert in domain D. E asserts that A is known to be true. A is within D. Therefore, A may (plausibly) be taken to be true.</p>
+                            <div role="separator" class="divider"></div>
+                            <p class="text-justify">Major Premise:</p>
+                            <pre> Doctor Tom is an expert in opthalmology, a field that knows the human eye.</pre>
+                            <p class="text-justify">Minor Premise:</p>
+                            <pre> Doctor Tom says that looking at mobile phone with the lights off for long periods at night can lead to eye damage.</pre>
+                            <p class="text-justify">Conclusion:</p>
+                            <pre> Looking at a mobile phone with the lights off at night for a long time can lead to eye damage.</pre>
+                        </div>
+                        <div id="popular_pop_scheme_input" class="panel-body s_example">
+                            <h4>Popular Opinion Scheme</h4>
+                            <p class="text-justify">Generally Acceptance Premiese:</p>
+                            <pre>It is generally accepted by people in Hawaii  that the sea is a great place to swim in the summer.</pre>
+                            <p class="text-justify">Presumption Premise：</p>
+                            <pre>This is not compulsory to fill in here.</pre>
+                            <p class="text-justify">Conclusion:</p>
+                            <pre>The sea around Hawaii seems to be a good place to swim in the summer.</pre>
+                        </div>
+                        <div id="position_posi_scheme_input" class="panel-body s_example">
+                            <h4>Position to Know Scheme</h4>
+                            <p class="text-justify">Major Premise:</p>
+                            <pre> Guide Tom is a local Londoner who knows the locations of London's attractions, so he should know where the British Museum is.</pre>
+                            <p class="text-justify">Minor Premise:</p>
+                            <pre> Guide Tom said the British Museum is located in Great Russell Street.</pre>
+                            <p class="text-justify">Conclusion:</p>
+                            <pre> It is true that the British Museum is in Great Russell Street.</pre>
+                        </div>
+                        <div id="analogy_ana_scheme_input" class="panel-body s_example">
+                            <h4>Analogy Scheme</h4>
+                            <p class="text-justify">Similarity Premise:</p>
+                            <pre> Tigers and whales both are viviparous.</pre>
+                            <p class="text-justify">Base Premise:</p>
+                            <pre> Tigers are mammals.</pre>
+                            <p class="text-justify">Conclusion:</p>
+                            <pre>  Whales are mammals.</pre>
+                        </div>
+                        <div id="correlation_corr_scheme_input" class="panel-body s_example">
+                            <h4>Correlation to Cause Scheme</h4>
+                            <p class="text-justify">Correlation Premise:</p>
+                            <pre> In 1986 at a conference in Boston on the link between humans and pets, researchers reported that pets could lower blood pressure in humans, improve heart patients’ chances of survival, and could even penetrate the isolation of autistic children.</pre>
+                            <p class="text-justify">Conclusion:</p>
+                            <pre> Owning a pet can improve health.</pre>
+                            <div role="separator" class="divider"></div>
+                            The example from:  Walton, Douglas. Fundamentals of critical argumentation (Cambridge University Press, 2005), pp. 102.
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Example of Critical Question
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div id="a_cq_input" class="panel-body c_question c_question_active"> <!--col-lg-6-->
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h4>Action Scheme</h4>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="a_cq_r" value="option1" checked>
+                                                Are the believed circumstances(<strong><em>R</em></strong>) true? (Disagree with <strong><em>R</em></strong>)
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="a_cq_action" value="option1" checked>
+                                                Are there alternative ways(<strong><em>A</em></strong>) of realising the same consequences? (Disagree with <strong><em>A</em></strong>)
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="a_cq_s" value="option1" checked>
+                                                Assuming the circumstances(<strong><em>R</em></strong>), does the action(<strong><em>A</em></strong>) have the stated consequences(<strong><em>S</em></strong>)? (Disagree with <strong><em>S</em></strong>)
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="a_cq_goal" value="option1" checked>
+                                                Assuming that the execution of action(<strong><em>A</em></strong>) in circumstances(<strong><em>R</em></strong>) leads to new circumstances(<strong><em>S</em></strong>), will this truly achieve the desired goal(<strong><em>G</em></strong>)? (Disagree with <strong><em>G</em></strong>)
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="a_cq_value" value="option1" checked>
+                                                Is the value(<strong><em>V</em></strong>) indeed a legitimate value? (Disagree with <strong><em>V</em></strong>)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="ex_cq_input" class="panel-body c_question">
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h4>Expert Opinion Scheme</h4>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="ex_cq_eq" value="option1" checked>
+                                                1. Expertise Question: How credible is <strong><em>E</em></strong> as an expert source?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="ex_cq_fq" value="option1" checked>
+                                                2. Field Question: Is <strong><em>E</em></strong> an expert in the field that <strong><em>A</em></strong> is in?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="ex_cq_oq" value="option1" checked>
+                                                3. Opinion Question: What did <strong><em>E</em></strong> assert that implies <strong><em>A</em></strong>?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="ex_cq_tq" value="option1" checked>
+                                                4. Trustworthiness Question: Is <strong><em>E</em></strong> personally reliable as a source?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="ex_cq_cq" value="option1" checked>
+                                                5. Consistency Question: Is <strong><em>A</em></strong> consistent with what other experts assert?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="ex_cq_beq" value="option1" checked>
+                                                6. Backup Evidence Question: Is <strong><em>E</em></strong>’s assertion based on evidence?
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="pop_cq_input" class="panel-body c_question">
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h4>Popular Opinion Scheme</h4>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" value="premise" checked />
+                                                1. What evidence, such as a poll or an appeal to common knowledge, supports the claim that <strong><em>A</em></strong> is generally accepted as true?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="attack" />
+                                                2. Even if <strong><em>A</em></strong> is generally accepted as true, are there any good reasons for doubting it is true?
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="posi_cq_input" class="panel-body c_question">
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h4>Position to Know Scheme</h4>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" value="premise" checked />
+                                                1. Is <strong><em>a</em></strong> in a position to know whether <strong><em>A</em></strong> is true (false)?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="premise" />
+                                                2. Is <strong><em>a</em></strong> an honest (trustworthy, reliable) source?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="attack" />
+                                                3. Did <strong><em>a</em></strong> assert that <strong><em>A</em></strong> is true (false)?
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="ana_cq_input" class="panel-body c_question">
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h4>Analogy Scheme</h4>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" value="premise" checked />
+                                                1. Are there differences between <strong><em>C1</em></strong> and <strong><em>C2</em></strong> that would tend to undermine the force of the similarity cited?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="premise" />
+                                                2. Is <strong><em>A</em></strong> true (false) in <strong><em>C1</em></strong>?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="attack" />
+                                                3. Is there some other case <strong><em>C3</em></strong> that is also similar to <strong><em>C1</em></strong>, but in which <strong><em>A</em></strong> is false (true)?
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="corr_cq_input" class="panel-body c_question">
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h4>Analogy Scheme</h4>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" value="premise" checked />
+                                                1. Is there really a correlation between <strong><em>A</em></strong> and <strong><em>B</em></strong>?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="premise" />
+                                                2. Is there any reason to think that the correlation is any more than a coincidence?
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"  value="attack" />
+                                                3. Could there be some third factor, <strong><em>C</em></strong>, that is causing both <strong><em>A</em></strong> and <strong><em>B</em></strong>?
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row small_foot">
+        <p class="text-center">The website is developed by<a href="https://www.kcl.ac.uk/">@Wenqing Shu</a>.</p>
+    </div>
+</div>
+<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+<script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+<script type="text/javascript" src="../static/js/createFrame.js" th:src="@{/js/createFrame.js}"></script>
+</body>
+</html>

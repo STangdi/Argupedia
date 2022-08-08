@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="../static/css/search.css" th:href="@{/css/search.css}">
+    <!--Download link for jquery library:  https://code.jquery.com/jquery-3.6.0.js-->
+    <script type="text/javascript" src="../static/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-default shadow-lg" role="navigation">
+    <div id="top" class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+               Argupedia
+            </a>
+        </div>
+        <div class="top_nav">
+            <ul class="nav navbar-nav ">
+                <li ><a href="home"><i class="bi bi-house"></i> Home</a></li>
+                <li class="top_nav_menu">
+                    <a class="select_nav" href="#" ><i class="bi bi-tornado"></i> Argument</a>
+                    <div class="top_nav_item">
+                        <ul class="nav navbar-nav ">
+                            <li ><a href="create">Find</a></li>
+                            <li ><a href="createNewFrame">Create New  Framework</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="view"><i class="bi bi-list-columns-reverse"></i></i> Framework</a></li>
+                <li><a href="view"><i class="bi bi-share-fill"></i> View</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<img id="img3" src="../static/img/sun.png" th:src="@{/img/sun.png}" />
+<img id="img4" src="../static/img/cloud.png" th:src="@{/img/cloud.png}" />
+<div id="search" class="container">
+    <div class="row">
+        <form id="searchform" class="navbar-form" method="post" action="/view/searchFid">
+            <div class="form-group">
+                <input name="search_fid" type="search" class="form-control search" placeholder="Search...      please enter a number" pattern="[0-9]" required/>
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+
+    </div>
+    <div id="image">
+        <img id="img1" src="../static/img/mountain.png" th:src="@{/img/mountain.png}"/>
+    </div>
+</div>
+</body>
+</html>

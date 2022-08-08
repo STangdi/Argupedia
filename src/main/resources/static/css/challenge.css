@@ -1,0 +1,173 @@
+#select_scheme h3{
+    margin-top: 0px;
+    color: #FF9B4F;
+}
+#select_scheme p{
+    font-size: 16px;
+}
+#select_scheme p i:hover{
+    color: #FF9B4F;
+}
+#select_scheme #select_scheme_dropdown{
+    width:210px;
+}
+#select_scheme #select_scheme_dropdown .btn-default{
+    width: 250px;
+    height: 40px;
+    margin: 0;
+    color: #333;
+    text-align: left;
+    font-size: 16px;
+    line-height: 28px;
+    padding-right: 10px;
+    background-color: white;
+    outline: none;
+}
+#dropdown_button::after {
+    display: inline-block;
+    float: right;
+    margin-top: 12px;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+#select_scheme #select_scheme_dropdown .btn-default span{
+    float: right;
+    margin-top: 13px;
+
+}
+#select_scheme #select_scheme_dropdown  #dropdown_item{
+    display: none;
+    width: 240px;
+    height: 243px;
+    padding: 0;
+    border-radius: 10px;
+}
+#select_scheme #select_scheme_dropdown  #dropdown_item li{
+    width: 240px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
+    padding-left: 10px;
+}
+#select_scheme #select_scheme_dropdown  #dropdown_item li:hover{
+    color: #fff;
+    cursor:pointer;
+    background-color: #FF9B4F;
+}
+#select_scheme #select_scheme_dropdown .btn-default:hover {
+    color: #333;
+    background-color: white;
+    border-color: burlywood;
+}
+#select_scheme #a_scheme_input{
+    margin-top: 10px;
+}
+
+#ex_scheme_input{
+    margin-top: 20px;
+}
+
+.s_scheme form fieldset button{
+    margin-top: 20px;
+    height: 40px;
+    color: #F8F4F1;
+    font-size: 16px;
+    background-color: #FF9B4F;
+    border: 1px solid #FF9B4F;
+}
+.s_scheme form fieldset button:hover{
+    color:#FF9B4F;
+    background-color: white;
+    border: 1px solid #FF9B4F;
+}
+.s_scheme form fieldset div{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.s_scheme form fieldset div label {
+    line-height: 30px;
+    font-size: 1.1em;
+}
+.panel-default .panel-heading{
+    color: #F8F4F1;
+    background-color: #FF9B4F;
+}
+/*.panel-default .panel-heading h4 a:hover{
+    text-decoration: none;
+}*/
+.panel-body{
+    padding-top: 0;
+    font-size: 1.1em;
+}
+#tips .panel-body{
+    padding-top: 10px;
+    font-size: 1.1em;
+}
+.divider{
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+.s_example h4{
+    color: #FF9B4F;
+    text-align: left;
+}
+.s_example p{
+    font-size: 1.1em;
+}
+.s_example pre{
+    width: fit-content;
+    font-size: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-x:hidden;
+    white-space: normal;
+}
+.c_question form fieldset .form-group h4 {
+    color: #FF9B4F;
+}
+.c_question form fieldset button{
+    margin-top: 20px;
+    height: 40px;
+    color: #F8F4F1;
+    font-size: 16px;
+    background-color: #FF9B4F;
+    border: 1px solid #FF9B4F;
+}
+.c_question form fieldset button:hover{
+    color:#FF9B4F;
+    background-color: white;
+    border: 1px solid #FF9B4F;
+}
+.c_question form fieldset div .radio label{
+    margin-top: 10px;
+    font-size: 1.1em;
+
+}
+.s_scheme{
+    display: none;
+}
+.s_scheme_active{
+    display: block;
+}
+.s_example{
+    display: none;
+}
+.s_example_active{
+    display: block;
+}
+.c_question{
+    display:none;
+}
+.c_question_active{
+    display: block;
+}
+.small_foot{
+    margin-top: 20px;
+}
